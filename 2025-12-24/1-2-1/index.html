@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1-2-1</title>
+  </head>
+  <body>
+    <script>
+      function calculate(a, b, operator = "+") {
+        switch (operator) {
+          case "+":
+            return a + b
+          case "-":
+            return a - b
+          case "*":
+            return a * b
+          case "/":
+            if (b === 0) return "0으로 나눌 수 없습니다"
+            return a / b
+          default:
+            return "잘못된 연산자"
+        }
+      }
+
+      console.log(calculate(10, 10))
+      console.log(calculate(10, 5, "-"))
+      console.log(calculate(10, 0, "/"))
+    </script>
+  </body>
+</html>
