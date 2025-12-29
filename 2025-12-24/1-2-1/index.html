@@ -10,22 +10,22 @@
       function calculate(a, b, operator = "+") {
         switch (operator) {
           case "+":
-            return a + b
+            return a + b;
           case "-":
-            return a - b
+            return a - b;
           case "*":
-            return a * b
+            return a * b;
           case "/":
-            if (b === 0) return "0으로 나눌 수 없습니다"
-            return a / b
+            if (b === 0) return "0으로 나눌 수 없습니다";
+            return a / b;
           default:
-            return "잘못된 연산자"
+            return "잘못된 연산자";
         }
       }
 
-      console.log(calculate(10, 10))
-      console.log(calculate(10, 5, "-"))
-      console.log(calculate(10, 0, "/"))
+      console.log(calculate(10, 10));
+      console.log(calculate(10, 5, "-"));
+      console.log(calculate(10, 0, "/"));
     </script>
   </body>
 </html>

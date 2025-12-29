@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장바구니 배열 관리하기</title>
+  </head>
+  <body>
+    <script>
+      let cart = [];
+
+      cart.push({ name: "핫케이크가루", price: 8700 });
+      cart.push({ name: "우유", price: 2500 });
+      cart.push({ name: "계란", price: 4700 });
+      cart.push({ name: "버터", price: 39900 });
+
+      console.log(`------ 1. 상품 추가 ------`);
+      cart.forEach((item) => {
+        console.log(`${item.name} : ${item.price}원`);
+      });
+
+      console.log(`------ 2. 상품 삭제 (계란 Out) ------`);
+      const cartCopy1 = [...cart];
+      cartCopy1.splice(2, 1);
+      cartCopy1.forEach((item) => {
+        console.log(`${item.name} : ${item.price}원`);
+      });
+
+      console.log(`------ 3. 상품 목록 출력 ------`);
+      const cartCopy2 = [...cartCopy1];
+      console.log(cartCopy2.map((i) => i.name).join(", "));
+
+      // 선생님....1, 2번은 어떻게든 했지만...
+      // 아무리 생각해도 3, 4번은 못 풀겠어서 힌트 봤습니다...
+      // 너무 어려웠어요...정말....울고싶습니다....살려주세요🥕🥕🥕🥕🥕🥕🥕
+
+      console.log(`------ 4. 가격순 정렬 ------`);
+      const cartCopy3 = [...cartCopy2];
+      cartCopy3.sort((a, b) => a.price - b.price);
+      cartCopy3.forEach((item) => {
+        console.log(`${item.name} : ${item.price}원`);
+      });
+    </script>
+  </body>
+</html>
