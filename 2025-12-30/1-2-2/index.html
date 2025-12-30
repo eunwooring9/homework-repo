@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>학생 정보 객체 관리하기</title>
+  </head>
+  <body>
+    <script>
+      // --- 1번 ---
+      const student = {
+        name: "은우",
+        age: 25,
+        scores: {
+          math: 32,
+          english: 90,
+        },
+      };
+      console.log(`1. 객체 생성 : ${student.name}`);
+
+      //   --- 2번 ---
+      function getProperty(obj, key) {
+        return obj[key];
+      }
+      console.log(`2. 동적 속성 접근 : ${getProperty(student, "age")}`);
+
+      //   --- 3번 ---
+      function getAverage() {
+        const math = student.scores.math;
+        const eng = student.scores.english;
+        // 평균 값 구하기
+        return (math + eng) / 2;
+      }
+      console.log(`3. 평균 : ${getAverage()}`);
+
+      // --- 4번 ---
+      const studentCopy = JSON.parse(JSON.stringify(student));
+
+      studentCopy.age = 26;
+      studentCopy.scores.eng = 95;
+      console.log(`4. 원본 나이 : ${getProperty(student, "age")} / 영어 점수 : ${student.scores.math}`);
+      console.log(`4-1. 나이 변경 : 곧 ${getProperty(studentCopy, "age")} / 영어 점수 변경 : ${studentCopy.scores.eng}`);
+    </script>
+  </body>
+</html>
