@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 탐색기 만들기</title>
+  </head>
+  <body>
+    <div id="btn-wrap">
+      <button class="myBtn" id="myBtn">클릭하세요</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+      "use strict";
+      const btn = document.querySelector("#myBtn");
+      const btnAll = document.querySelectorAll("#myBtn");
+
+      const printResult = document.querySelector("#result");
+
+      console.log(btn.parentElement.tagName);
+      console.log(btn.children.length);
+
+      console.log("quertySelector : ", btn); // 버튼 1개
+      console.log("quertySelectorAll : ", btnAll); // Nodelist
+
+      btn.addEventListener("click", function () {
+        printResult.innerText = `tagName : ${btn.tagName}
+        id : ${btn.id}
+        className : ${btn.className}
+        parent : ${btn.parentElement.tagName}`;
+      });
+    </script>
+  </body>
+</html>

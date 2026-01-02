@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>간단한 프로필 카드 조작하기</title>
+    <style>
+      *,
+      *:after,
+      *:before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s;
+        background-color: #ffffff;
+        color: #303030;
+      }
+
+      body.dark-mode {
+        background-color: #1a1a1a;
+        color: white;
+      }
+
+      body.dark-mode .profile-card {
+        background-color: #1a1a1a;
+        border-color: #00ffcc;
+        box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+      }
+
+      .profile-card {
+        border: 4px solid #00ffcc;
+        border-radius: 9px;
+        width: 250px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        transition: 0.3s;
+      }
+
+      .profile-name {
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      #btn {
+        width: 150px;
+        height: 40px;
+        background-color: #00ffcc;
+        border: none;
+        border-radius: 6px;
+        font-size: 17px;
+        font-weight: 600;
+        color: rgb(232, 232, 232);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-card">
+      <div class="profile-name" data-user-id="1234">홍길동</div>
+      <button id="btn">Themes</button>
+    </div>
+
+    <script>
+      "use strict";
+
+      const profileCard = document.querySelector(".profile-card");
+      const profileName = document.querySelector(".profile-name");
+      const btn = document.querySelector("#btn");
+
+      // 1번
+      profileName.textContent = "최은우";
+
+      // 2번
+      btn.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+        const isDark = document.body.classList.contains("dark-mode");
+        btn.textContent = isDark ? "☀️Light Mode" : "⭐Dark Mode";
+      });
+
+      // 3번
+      console.log(profileName.dataset.userId);
+
+      // 4번
+      const newTag = document.createElement("span");
+      newTag.textContent = "Frontend Developer";
+      newTag.style.fontSize = "17px";
+      newTag.style.fontWeight = "600";
+      profileName.after(newTag);
+    </script>
+  </body>
+</html>
