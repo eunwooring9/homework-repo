@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this 바인딩 실험하기</title>
+  </head>
+  <body>
+    <script>
+      const hero = {
+        printHero: "Batman",
+        call() {
+          console.log(this.printHero);
+        },
+        delayedGreat() {
+          setTimeout(() => console.log(this.printHero), 1500);
+        },
+      };
+
+      const stolenCall = hero.call;
+      stolenCall();
+      // 1번 이유:
+      // .없이 실행해서 this가 주인인 hero를 잃고 전역 객체로 감(window). 전역에는 name이 없으니까 undefined
+
+      // 2번 bind로 해결
+      const fixedCall = hero.call.bind(hero);
+      fixedCall();
+
+      // 3번 타이머
+      hero.delayedGreat();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>클로저로 카운터 모듈 만들기</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      function createCounter() {
+        let count = 10;
+
+        return {
+          increment() {
+            count++;
+            return count;
+          },
+          decrement() {
+            count--;
+            return count;
+          },
+          getValue() {
+            return count;
+          },
+          reset() {
+            count = 0;
+            return count;
+          },
+        };
+      }
+
+      const counter1 = createCounter();
+      const counter2 = createCounter();
+
+      console.log(`--- 숫자 up / down ---`);
+      console.log(counter1.increment());
+      console.log(counter1.increment());
+      console.log(counter1.getValue());
+      console.log(counter1.decrement());
+
+      console.log(`--- 독립적인 상태 --- `);
+      console.log(counter2.increment());
+      console.log(counter2.decrement());
+      console.log(counter2.getValue());
+
+      console.log(`--- reset ---`);
+      counter1.reset();
+      console.log(counter1.getValue());
+    </script>
+  </body>
+</html>
