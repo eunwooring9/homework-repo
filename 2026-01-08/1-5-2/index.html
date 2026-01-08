@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("1. 가게 오픈");
+
+      setTimeout(() => {
+        console.log("2. 일반 손님 주문 완료");
+      }, 0);
+
+      Promise.resolve().then(() => {
+        console.log("3. VIP 손님 입장");
+      });
+
+      console.log("4. 재료 준비");
+
+      // 1. 1 -> 4 -> 3 -> 2
+
+      // 2. VIP는 마이크로태스크 큐에 들어가고, 일반은 테스크 큐에 들어가서 우선순위에 따라서 VIP가 먼저 실행됨
+
+      // 3. 1000으로 늘린다고 해도 우선순위는 그대로니까 순서에는 변함이 없음
+    </script>
+  </body>
+</html>
