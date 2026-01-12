@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>할 일 목록 관리하기</title>
+
+    <style>
+      :root {
+        --primary-red: #e03131;
+        --text-dark: #333333;
+        --border-gray: #ddd;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", Roboto, "Malgun Gothic", sans-serif;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        background-color: #ffffff;
+        width: 450px;
+        padding: 2.5rem;
+        border-radius: 12px;
+        border: 2px solid var(--primary-red);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 700;
+        color: var(--primary-red);
+      }
+
+      .input-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+        flex-grow: 1;
+        padding: 12px 15px;
+        background-color: #fff;
+        border: 1px solid var(--border-gray);
+        color: var(--text-dark);
+        font-size: 16px;
+        border-radius: 6px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      input[type="text"]:focus {
+        border-color: var(--primary-red);
+      }
+
+      button {
+        cursor: pointer;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.2s;
+      }
+
+      #add-btn {
+        background-color: var(--primary-red);
+        border: 1px solid var(--primary-red);
+        color: white;
+      }
+
+      #reset-btn {
+        width: 100%;
+        margin-top: 20px;
+        background-color: white;
+        border: 1px solid var(--primary-red);
+        color: var(--primary-red);
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        max-height: 350px;
+        overflow-y: auto;
+      }
+
+      li {
+        background-color: #fff;
+        border-bottom: 1px solid #f1f1f1;
+        padding: 15px 5px;
+        color: var(--text-dark);
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+      }
+
+      li:last-child {
+        border-bottom: none;
+      }
+
+      li::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--primary-red);
+        margin-right: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input id="todo-input" type="text" placeholder="오늘은 뭐하지?" />
+      <button id="add-btn">추가</button>
+      <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+      const input = document.querySelector("#todo-input");
+      const btn = document.querySelector("#add-btn");
+      const list = document.querySelector("#todo-list");
+      const saved = localStorage.getItem("todos");
+      const todos = saved ? JSON.parse(saved) : [];
+
+      function saveTodos() {
+        localStorage.setItem("todos", JSON.stringify(todos));
+      }
+
+      btn.addEventListener("click", () => {
+        const text = input.value;
+
+        if (text === "") {
+          alert("할 일을 입력해주세요!");
+          return;
+        }
+
+        todos.push(text);
+        saveTodos();
+        render();
+
+        input.value = "";
+      });
+
+      function render() {
+        list.innerHTML = "";
+        todos.forEach((todo) => {
+          const li = document.createElement("li");
+          li.textContent = todo;
+          list.appendChild(li);
+        });
+      }
+      render();
+    </script>
+  </body>
+</html>
