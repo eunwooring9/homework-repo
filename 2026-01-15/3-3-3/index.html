@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch로 공개 API 호출하기</title>
+  </head>
+  <body>
+    <script>
+      async function getPosts() {
+        const url = `https://jsonplaceholder.typicode.com/posts/1`;
+
+        try {
+          const res = await fetch(url);
+          const data = await res.json();
+          console.log(data);
+        } catch (err) {
+          console.error(`에러: ${err}`);
+        }
+      }
+
+      console.log(getPosts());
+    </script>
+  </body>
+</html>
