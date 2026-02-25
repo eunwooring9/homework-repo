@@ -2,7 +2,7 @@ const { isValidPassword } = require("./password");
 
 describe("isValidPassword", () => {
   describe("정상 케이스", () => {
-    test("모든 조건 만족 / trun 반환", () => {
+    test("모든 조건 만족", () => {
       expect(isValidPassword("Password123")).toBe(true);
     });
   });
@@ -12,7 +12,7 @@ describe("isValidPassword", () => {
       expect(isValidPassword("Password123")).toBe(true);
     });
 
-    test("8자 미만은 실패", () => {
+    test("8자 미만 실패", () => {
       expect(isValidPassword("Pass1")).toBe(false);
     });
 
@@ -20,7 +20,7 @@ describe("isValidPassword", () => {
       expect(isValidPassword("12345678")).toBe(false);
     });
 
-    test("빈 문자", () => {
+    test("빈 문자열", () => {
       expect(isValidPassword("")).toBe(false);
     });
   });
